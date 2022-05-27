@@ -87,9 +87,12 @@ public class MainActivity extends AppCompatActivity {
         {
             correctAnswer = operand1-operand2;
         }
-        else if(operator.equals("/"))
+        while(operand2 != 0)
         {
-            correctAnswer = operand1/operand2;
+            else if (operator.equals("/"))
+            {
+                correctAnswer = operand1 / operand2;
+            }
         }
         else
         {
@@ -101,29 +104,29 @@ public class MainActivity extends AppCompatActivity {
         {
             button1.setText(correctAnswer + "");
             button2.setText((correctAnswer + 1)+"");
-            button2.setText((correctAnswer - 1)+"");
-            button2.setText((correctAnswer - 3)+"");
+            button3.setText((correctAnswer - 1)+"");
+            button4.setText((correctAnswer - 3)+"");
         }
         else if(correctButton == 1)
         {
             button1.setText((correctAnswer + 1) + "");
             button2.setText(correctAnswer + "");
-            button2.setText((correctAnswer - 1)+"");
-            button2.setText((correctAnswer - 3)+"");
+            button3.setText((correctAnswer - 1)+"");
+            button4.setText((correctAnswer - 3)+"");
         }
         else if(correctButton == 2)
         {
             button1.setText((correctAnswer + 1) + "");
             button2.setText((correctAnswer - 1) + "");
-            button2.setText(correctAnswer +"");
-            button2.setText((correctAnswer - 3)+"");
+            button3.setText(correctAnswer +"");
+            button4.setText((correctAnswer - 3)+"");
         }
         else if(correctButton == 3)
         {
             button1.setText((correctAnswer + 1) + "");
             button2.setText((correctAnswer - 3) + "");
-            button2.setText((correctAnswer - 1)+"");
-            button2.setText(correctAnswer +"");
+            button3.setText((correctAnswer - 1)+"");
+            button4.setText(correctAnswer +"");
         }
 
 
@@ -145,6 +148,10 @@ public class MainActivity extends AppCompatActivity {
         //Computing the sum of score array, which has the 1 or in each index,depending on correct or incorrect answers
         int sum=0;
        // your code here
+        for(int i=0;i<score.length;i++)
+        {
+            sum = sum + score[i];
+        }
         return sum;
     }
 
@@ -164,6 +171,18 @@ public class MainActivity extends AppCompatActivity {
     public String getInterpretation(int [][]dataFrame,double slope){
        //provide interpretation based on your slope analysis
         // Your code here
-        return "Your Interpretation";
+        String interpretation = "All is well";
+        if(slope > 0 && slope <= 0.5)
+            interpretation = "You are a slow learner!";
+        else if(slope > 0.5 )
+            interpretation = "Your are a fast learner!";
+        else if(slope < 0)
+            interpretation = "You are an Unlearner!";
+        else if(dataFrame[0][1] == 3 && slope == 0)
+            interpretation = "You achieved perfection!!!!";
+        else if(dataFrame[0][1] == 0 && slope == 0)
+            interpretation = "You do not learn!!!!";
+
+        return interpretation;
     }
 }
