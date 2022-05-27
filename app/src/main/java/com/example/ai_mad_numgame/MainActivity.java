@@ -87,12 +87,11 @@ public class MainActivity extends AppCompatActivity {
         {
             correctAnswer = operand1-operand2;
         }
-        while(operand2 != 0)
+        else if (operator.equals("/"))
         {
-            else if (operator.equals("/"))
-            {
+            if(operand2==0)
+                operand2=1;
                 correctAnswer = operand1 / operand2;
-            }
         }
         else
         {
